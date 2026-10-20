@@ -1,8 +1,17 @@
-export default function ProductCard({product, onAddToCart }) {
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+
+export default function ProductCard({ product }) {
+  const { dispatch } = useContext(CartContext); 
+  const onAddToCart = (selectedProduct) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: selectedProduct, 
+    });
+  };
+
   return (
-    <div
-      className="card bg-base-100 w-100 sm:w-96 shadow-xl border border-base-200"
-    >
+    <div className="card bg-base-100 w-100 sm:w-96 shadow-xl border border-base-200">
       <figure className="px-4 pt-4 h-60 bg-base-200/50">
         <img
           src={product.images?.[0]}
@@ -19,7 +28,12 @@ export default function ProductCard({product, onAddToCart }) {
           {product.description}
         </p>
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-primary btn-sm sm:btn-md" onClick={() => onAddToCart(product)}>Add to Cart</button>
+          <button
+            className="btn btn-primary btn-sm sm:btn-md"
+            onClick={() => onAddToCart(product)}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
