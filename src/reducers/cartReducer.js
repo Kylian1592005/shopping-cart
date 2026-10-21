@@ -1,3 +1,5 @@
+export const initialState = [];
+
 export function reducer(state, action) {
   switch (action.type) {
     case "ADD_TO_CART": {
@@ -43,5 +45,3 @@ export function reducer(state, action) {
       return state;
   }
 }
-
-export const initialState = [];
