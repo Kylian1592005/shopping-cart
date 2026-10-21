@@ -1,0 +1,1 @@
+export const formatCurrency = (price) => price.toFixed(2); 

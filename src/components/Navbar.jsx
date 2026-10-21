@@ -8,9 +8,10 @@ export default function Navbar() {
   const cartCount = state.reduce((total, currentItem) => {
     return total + currentItem.quantity;
   }, 0);
+
   return (
     <>
-      <header className="navbar w-full bg-base-100 text-base-content rounded-b-xl shadow-md px-8 py-3 mb-6">
+      <header className="fixed top-0 left-0 z-50 navbar w-full bg-base-100 text-base-content rounded-b-xl shadow-md px-8 py-3">
         <div className="navbar-start">
           <Link
             to="/"
@@ -28,10 +29,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link
-                to="/products"
-                className="hover:text-primary transition-colors"
-              >
+              <Link to="/" className="hover:text-primary transition-colors">
                 Products
               </Link>
             </li>
@@ -65,7 +63,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mx-auto pt-24 px-4 sm:px-6 lg:px-8">
         <Outlet />
       </main>
     </>
