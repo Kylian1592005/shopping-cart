@@ -26,13 +26,17 @@ export default function ProuductsPage() {
     fetchProductData();
   }, []);
 
-  
-  if (loading) return <p className="text-center text-lg my-10">Loading...</p>;
+  if (loading)
+    return (
+      <div class="flex justify-center my-10 w-full">
+        <span class="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   if (error) return <p className="text-center text-error my-10">{error}</p>;
   return (
     <div className="w-full min-h-screen bg-base-200">
       <div className="container mx-auto p-6">
-        <ProductList products={products}/>
+        <ProductList products={products} />
       </div>
     </div>
   );
