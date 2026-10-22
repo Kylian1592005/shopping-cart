@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import ProductList from "../components/ProductList";
 import { useOutletContext } from "react-router-dom";
 
-export default function ProuductsPage() {
+export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { searchQuery } = useOutletContext();
+  const { searchQuery, sortOption } = useOutletContext();
 
   useEffect(() => {
     async function fetchProductData() {
@@ -33,11 +33,19 @@ export default function ProuductsPage() {
     .toLowerCase()
     .replace(/\s+/g, "");
 
-  const filteredProducts = products.filter((product) => {
-    const cleanTitle = product.title.toLowerCase().replace(/\s+/g, "");
-
-    return cleanTitle.includes(cleanQuery.toLowerCase());
-  });
+  const filteredProducts = products
+    .filter((product) => {
+      const cleanTitle = product.title.toLowerCase().replace(/\s+/g, "");
+      return cleanTitle.includes(cleanQuery);
+    })
+    .sort((a, b) => {
+      if (sortOption === "default") return 0;
+      if (sortOption === "price-asc") return a.price - b.price;
+      if (sortOption === "price-desc") return b.price - a.price;
+      if (sortOption === "name-asc") return a.title.localeCompare(b.title);
+      if (sortOption === "name-desc") return b.title.localeCompare(a.title);
+      return 0;
+    });
 
   if (loading)
     return (

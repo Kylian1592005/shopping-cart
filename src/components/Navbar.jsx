@@ -5,6 +5,7 @@ import { CartContext } from "../context/CartContext";
 export default function Navbar() {
   const { state } = useContext(CartContext);
   const [searchQuery, setSetQuery] = useState("");
+  const [sortOption, setSortOption] = useState("default");
 
   const cartCount = state.reduce((total, currentItem) => {
     return total + currentItem.quantity;
@@ -31,6 +32,20 @@ export default function Navbar() {
               value={searchQuery}
               onChange={(e) => setSetQuery(e.target.value)}
             />
+          </div>
+
+          <div className="form-control w-full sm:w-xs">
+            <select
+              className="select select-bordered select-sm sm:select-md w-full"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="default">Default (API order)</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+            </select>
           </div>
 
           <ul className="menu menu-horizontal px-1 gap-2 font-medium">
@@ -70,7 +85,7 @@ export default function Navbar() {
       </header>
 
       <main className="max-w-7xl mx-auto pt-24 px-4 sm:px-6 lg:px-8">
-        <Outlet context={{searchQuery}} />
+        <Outlet context={{ searchQuery, sortOption }} />
       </main>
     </>
   );
