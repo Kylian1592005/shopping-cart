@@ -50,7 +50,8 @@ export default function ProductsPage() {
   if (loading)
     return (
       <div className="flex justify-center my-10 w-full">
-        <span className="loading loading-spinner loading-lg"></span>
+        <span className="loading loading-spinner loading-lg mr-2"></span>
+        <span>Loading</span>
       </div>
     );
   if (error) return <p className="text-center text-error my-10">{error}</p>;
