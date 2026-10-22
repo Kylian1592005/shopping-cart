@@ -1,16 +1,44 @@
-# React + Vite
+# Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive shopping cart web application built with React. Users can browse smartphones, search and sort products, add items to their cart, and manage their shopping cart.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Product Listing** – Fetch smartphone products from the DummyJSON API.
+- **Search Products** – Search products by title.
+- **Sort Products** – Sort by default order, price (low to high / high to low), and name (A–Z).
+- **Shopping Cart** – Add and remove products from the cart.
+- **Quantity Management** – Increase or decrease product quantities.
+- **Cart Summary** – Display subtotal, shipping fee, and total price.
+- **Clear Cart** – Remove all items from the cart.
+- **Persistent Storage** – Save cart items in LocalStorage.
+- **Responsive UI** – Designed for different screen sizes.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- Tailwind CSS
+- daisyUI
+- React Router
+- Context API
+- useReducer
+- LocalStorage
+- DummyJSON API
 
-## Expanding the ESLint configuration
+## API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Product data is fetched from:
+
+[DummyJSON – Smartphones](https://dummyjson.com/products/category/smartphones)
+
+## Data Storage
+
+Cart items are stored in the browser's LocalStorage so the cart can persist after refreshing the page.
+
+## Future Improvements
+
+- Checkout flow
+- Product details page
+- Improved product filtering
+- Better error handling and accessibility
