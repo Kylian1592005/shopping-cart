@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 export default function Navbar() {
   const { state } = useContext(CartContext);
+  const [searchQuery, setSetQuery] = useState("");
 
   const cartCount = state.reduce((total, currentItem) => {
     return total + currentItem.quantity;
@@ -21,13 +22,18 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex items-center gap-4">
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="input input-bordered input-sm w-24 md:w-auto"
+              value={searchQuery}
+              onChange={(e) => setSetQuery(e.target.value)}
+            />
+          </div>
+
           <ul className="menu menu-horizontal px-1 gap-2 font-medium">
-            <li>
-              <Link to="/" className="hover:text-primary transition-colors">
-                Home
-              </Link>
-            </li>
             <li>
               <Link to="/" className="hover:text-primary transition-colors">
                 Products
@@ -64,7 +70,7 @@ export default function Navbar() {
       </header>
 
       <main className="max-w-7xl mx-auto pt-24 px-4 sm:px-6 lg:px-8">
-        <Outlet />
+        <Outlet context={{searchQuery}} />
       </main>
     </>
   );
